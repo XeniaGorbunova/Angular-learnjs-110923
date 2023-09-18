@@ -4,11 +4,20 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {HeaderModule} from './components/header/header.module';
+
+// Directive
+
+// Components
+
+// Pipe
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
-    providers: [],
+    declarations: [AppComponent], // const - es6
+    exports: [AppComponent], // module.export = {...} - es6
+    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HeaderModule], // import {...} from '...module.ts' - es6
     bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+// Services

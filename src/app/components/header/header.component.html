@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+    <button
+        mat-icon-button
+        aria-label="Example icon-button with menu icon"
+        class="example-icon"
+        (click)="onMenuClick()"
+    >
+        <!-- (click)="onMenuClick()"
+                    |
+                    V
+            buttonElement.addEventListener('click', () => {
+                onMenuClick();
+            })-->
+        <mat-icon>menu</mat-icon>
+    </button>
+    <!-- <img class="shop-icon" src="{{faviconSrc}}"> -->
+    <!-- <img class="shop-icon" [src]="faviconSrc" [style.width.px]="100"> -->
+    <img class="shop-icon" [src]="faviconSrc" [alt]="'123'" />
+    <span>{{ title }}</span>
+    <span class="example-spacer"></span>
+    <button
+        mat-icon-button
+        aria-label="Example icon-button with heart icon"
+        class="example-icon favorite-icon"
+    >
+        <mat-icon>favorite</mat-icon>
+    </button>
+    <button
+        mat-icon-button
+        aria-label="Example icon-button with share icon"
+        class="example-icon"
+        (click)="onShareClick($event)"
+    >
+        <!-- (click)="onShareClick($event)"
+                    |
+                    V
+            buttonElement.addEventListener('click', $event => {
+                onShareClick($event);
+            })-->
+        <mat-icon>share</mat-icon>
+    </button>
+</mat-toolbar>

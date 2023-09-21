@@ -5,17 +5,9 @@
         class="example-icon"
         (click)="onMenuClick()"
     >
-        <!-- (click)="onMenuClick()"
-                    |
-                    V
-            buttonElement.addEventListener('click', () => {
-                onMenuClick();
-            })-->
         <mat-icon>menu</mat-icon>
     </button>
-    <!-- <img class="shop-icon" src="{{faviconSrc}}"> -->
-    <!-- <img class="shop-icon" [src]="faviconSrc" [style.width.px]="100"> -->
-    <img class="shop-icon" [src]="faviconSrc" [alt]="'123'" />
+    <img alt="logo" class="shop-icon" [src]="shopIconSrc" />
     <span>{{ title }}</span>
     <span class="example-spacer"></span>
     <button
@@ -31,12 +23,6 @@
         class="example-icon"
         (click)="onShareClick($event)"
     >
-        <!-- (click)="onShareClick($event)"
-                    |
-                    V
-            buttonElement.addEventListener('click', $event => {
-                onShareClick($event);
-            })-->
         <mat-icon>share</mat-icon>
     </button>
 </mat-toolbar>

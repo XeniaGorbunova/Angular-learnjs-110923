@@ -7,9 +7,7 @@ import {Component} from '@angular/core';
 })
 export class HeaderComponent {
     readonly title = 'Angular-learnjs-110923';
-    // readonly faviconSrc = '../../../favicon.ico';
-    readonly faviconSrc =
-        'https://avatars.mds.yandex.net/i?id=42bbbbf7feb384c1b5091dfb67bdef4d4be257d1-10096313-images-thumbs&n=13';
+    readonly shopIconSrc = '../../../favicon.ico';
 
     onMenuClick() {
         // eslint-disable-next-line no-console

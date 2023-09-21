@@ -3,5 +3,6 @@ import {IApplicationConfig} from './application-config.interface';
 export const applicationConfigMock: IApplicationConfig = {
     title: 'Angular-learnjs-110923',
     shopIconSrc: '../../../favicon.ico',
+    // shopIconSrc: 'https://avatars.mds.yandex.net/i?id=f66969ea0a0ef7ccf3c71137f90f9713e06bb3de-9843573-images-thumbs&n=13',
     headerColorPalete: 'primary',
 };

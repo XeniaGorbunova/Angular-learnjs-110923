@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
     selector: 'app-products-list',
     templateUrl: './products-list.component.html',
     styleUrls: ['./products-list.component.css'],
+    // encapsulation: ViewEncapsulation.Emulated,
 })
 export class ProductsListComponent {
     onCardClick() {

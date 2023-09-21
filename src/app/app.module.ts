@@ -6,6 +6,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderModule} from './components/header/header.module';
 import {ProductsListModule} from './pages/products-list/products-list.module';
+import {SidenavModule} from './components/sidenav/sidenav.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -16,6 +17,7 @@ import {ProductsListModule} from './pages/products-list/products-list.module';
         BrowserAnimationsModule,
         HeaderModule,
         ProductsListModule,
+        SidenavModule,
     ],
     bootstrap: [AppComponent],
 })

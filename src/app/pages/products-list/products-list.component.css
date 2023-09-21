@@ -1,4 +1,4 @@
-.products-list {
+:host {
     width: 100%;
     display: flex;
     align-items: center;

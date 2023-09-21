@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {IProduct} from 'src/app/shared/products/product.interface';
 import {productMock} from 'src/app/shared/products/product.mock';
 
 @Component({
@@ -8,14 +7,14 @@ import {productMock} from 'src/app/shared/products/product.mock';
     styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-    public product: IProduct = productMock;
+    readonly product = productMock;
 
-    public buyProduct(event: MouseEvent) {
+    buyProduct(event: MouseEvent): void {
         event.stopPropagation();
-        console.log('buy');
+        // console.log('buy');
     }
 
-    public clickCard() {
-        console.log('click card');
+    clickCard(): void {
+        // console.log('click card');
     }
 }

@@ -1,0 +1,11 @@
+.card {
+    max-width: 400px;
+  }
+  
+  .card__header-image {
+    background-size: cover;
+  }
+
+  .card__price {
+    font-weight: 600;
+  }

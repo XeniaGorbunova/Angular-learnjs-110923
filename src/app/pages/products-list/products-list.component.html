@@ -1,7 +1,8 @@
-<app-card class="card" (click)="onCardClick()"></app-card>
-<app-card class="card" (click)="onCardClick()"></app-card>
-<app-card class="card" (click)="onCardClick()"></app-card>
-<app-card class="card" (click)="onCardClick()"></app-card>
-<app-card class="card" (click)="onCardClick()"></app-card>
-
+<app-card
+    *ngFor="let product of productList; trackBy: trackByProduct"
+    class="card"
+    [product]="product"
+    (click)="onCardClick()"
+    (handleProductBuyClick)="handleProductBuyClick($event)"
+></app-card>
 <!-- <span>Test</span> -->

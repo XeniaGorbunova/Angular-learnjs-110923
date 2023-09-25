@@ -11,10 +11,7 @@ export class AppComponent {
 
     isSidenavOpenedFromApp = false;
 
-    onMenuClick(event: Event) {
-        // eslint-disable-next-line no-console
-        console.log('click from AppComponent', event);
-
+    onMenuClick() {
         this.isSidenavOpenedFromApp = !this.isSidenavOpenedFromApp;
     }
 }

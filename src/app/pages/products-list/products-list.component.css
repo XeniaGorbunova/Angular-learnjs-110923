@@ -13,15 +13,3 @@
 .card {
     margin: 10px;
 }
-
-/* ::ng-deep app-products-list span {
-    color: red;
-} */
-
-/* ::ng-deep {
-    app-products-list {
-        span {
-            color: red;
-        }
-    }
-} */

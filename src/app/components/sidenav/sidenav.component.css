@@ -5,12 +5,12 @@
     height: 100%;
 }
 
-.example-container {
+.container {
     width: 100%;
     height: 100%;
 }
 
-.example-sidenav-content {
+.sidenav-content {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -18,6 +18,6 @@
     justify-content: center;
 }
 
-.example-sidenav {
+.sidenav {
     padding: 20px;
 }

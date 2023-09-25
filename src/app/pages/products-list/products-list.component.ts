@@ -6,7 +6,6 @@ import {IProduct} from '../../shared/products/product.interface';
     selector: 'app-products-list',
     templateUrl: './products-list.component.html',
     styleUrls: ['./products-list.component.css'],
-    // encapsulation: ViewEncapsulation.Emulated,
 })
 export class ProductsListComponent {
     readonly products = productsMock;

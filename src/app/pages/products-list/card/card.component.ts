@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {IProduct} from 'src/app/shared/products/product.interface';
+import {IProduct} from '../../../shared/products/product.interface';
 
 @Component({
     selector: 'app-card',
@@ -12,7 +12,10 @@ export class CardComponent {
 
     onProductBuy(event: Event, productId: string | undefined) {
         event.stopPropagation();
-        this.handleProductBuyClick.emit(productId);
+
+        if (productId) {
+            this.handleProductBuyClick.emit(productId);
+        }
 
         // eslint-disable-next-line no-console
         console.log('Buy product');

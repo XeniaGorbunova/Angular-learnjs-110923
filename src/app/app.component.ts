@@ -9,9 +9,9 @@ import {applicationConfigMock} from './shared/application-config/application-con
 export class AppComponent {
     readonly applicationConfig = applicationConfigMock;
 
-    isSidenavOpenedFromApp = false;
+    // isSidenavOpenedFromApp = false;
 
-    onMenuClick() {
-        this.isSidenavOpenedFromApp = !this.isSidenavOpenedFromApp;
-    }
+    // onMenuClick() {
+    //     this.isSidenavOpenedFromApp = !this.isSidenavOpenedFromApp;
+    // }
 }

@@ -1,8 +1,5 @@
-<app-header
-    [applicationConfig]="applicationConfig"
-    (menuClick)="sidenav.toggleSidenavOpened()"
-></app-header>
-<app-sidenav #sidenav>
+<app-header [applicationConfig]="applicationConfig"></app-header>
+<!-- <app-sidenav #sidenav>
     <ng-template #navigationTemplate>
         {{ applicationConfig.title }}
         <mat-list role="list">
@@ -11,6 +8,7 @@
             <mat-list-item role="listitem">Item 3</mat-list-item>
         </mat-list>
     </ng-template>
-</app-sidenav>
+</app-sidenav> -->
+<app-products-list></app-products-list>
 
 <app-popup-host></app-popup-host>

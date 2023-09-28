@@ -2,8 +2,6 @@
     [applicationConfig]="applicationConfig"
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
-<!-- <app-sidenav #sidenav [isSidenavOpened]="true"></app-sidenav> -->
-<!-- <app-sidenav #sidenav [navigationTemplate]="navigationTemplate"> -->
 <app-sidenav #sidenav>
     <ng-template #navigationTemplate>
         {{ applicationConfig.title }}
@@ -15,23 +13,4 @@
     </ng-template>
 </app-sidenav>
 
-<!-- Homework stand -->
-
-<!-- Switch template -->
-
-<!-- <app-popup-host [template]="switchTemplate ? first : second"></app-popup-host> -->
-
-<!-- or -->
-
-<!-- Close template -->
-
-<app-popup-host [template]="!closeTemplate ? first : null"></app-popup-host>
-
-<ng-template #first>
-    <h2>First</h2>
-    <p>Is first template</p>
-</ng-template>
-<ng-template #second>
-    <h2>Second</h2>
-    <p>Is second template</p>
-</ng-template>
+<app-popup-host></app-popup-host>

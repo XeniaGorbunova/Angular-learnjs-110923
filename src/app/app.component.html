@@ -19,21 +19,21 @@
 
 <!-- Switch template -->
 
-<!-- <app-popup-host [template]="switchTemplate ? first : second"></app-popup-host> -->
+<!-- <app-host-popup [template]="switchTemplate ? first : second"></app-host-popup> -->
 
 <!-- or -->
 
 <!-- Close template -->
 
-<!-- <app-popup-host [template]="!closeTemplate ? first : null"></app-popup-host> -->
+<!-- <app-host-popup [template]="!closeTemplate ? first : null"></app-host-popup> -->
 
-<!-- <ng-template #first>
+<ng-template #first>
     <h2>First</h2>
     <p>Is first template</p>
 </ng-template>
 <ng-template #second>
     <h2>Second</h2>
     <p>Is second template</p>
-</ng-template> -->
+</ng-template>
 
-<!-- <app-host-popup [template]></app-host-popup> -->
+<app-host-popup [template]="first"></app-host-popup>

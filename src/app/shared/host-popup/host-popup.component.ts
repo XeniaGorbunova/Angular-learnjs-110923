@@ -15,15 +15,14 @@ import {
 export class HostPopupComponent {
     @ViewChild('modalWrapper', {static: true})
     private readonly modalWrapper?: ElementRef;
+
     @ViewChild('viewport', {static: true, read: ViewContainerRef})
     private readonly viewport?: ViewContainerRef;
+
     @Input() set template(template: TemplateRef<unknown> | null) {
-        if (template) {
-            this.viewport?.clear();
-            this.viewport?.createEmbeddedView(template);
-        } else {
-            this.viewport?.clear();
-            this.modalWrapper?.nativeElement.classList.add('not-visible');
-        }
+        this.viewport?.clear();
+        template
+            ? this.viewport?.createEmbeddedView(template)
+            : this.modalWrapper?.nativeElement.classList.add('not-visible');
     }
 }

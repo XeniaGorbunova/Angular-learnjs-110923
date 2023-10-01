@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {productsMock} from '../../shared/products/products.mock';
 import {IProduct} from '../../shared/products/product.interface';
+import {LoadDirection} from 'src/app/shared/infinit-scroll/infinit-scroll';
 
 @Component({
     selector: 'app-products-list',
@@ -11,8 +12,7 @@ export class ProductsListComponent implements OnInit {
     productsStore: IProduct[] | null = null;
 
     get products(): IProduct[] | null {
-        // eslint-disable-next-line no-console
-        console.log('Calculated');
+        // console.log('Calculated');
 
         return this.productsStore;
     }
@@ -27,7 +27,10 @@ export class ProductsListComponent implements OnInit {
     }
 
     onProductBuy(id: IProduct['_id']) {
-        // eslint-disable-next-line no-console
-        console.log(id);
+        // console.log(id);
+    }
+
+    onLoad(loadDirection: LoadDirection) {
+        console.log(loadDirection);
     }
 }

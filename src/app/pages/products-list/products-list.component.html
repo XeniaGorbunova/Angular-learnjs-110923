@@ -4,7 +4,7 @@
 </ng-template> -->
 <ng-template let-productsFromNgIf="ngIf" [ngIf]="products" [ngIfElse]="loaderTemplate">
     <!-- Раскомментировать div при выполнении ДЗ -->
-    <div appInfinitScroll class="scroll-container" (onLoad)="onLoad($event)">
+    <div appInfinitScroll class="scroll-container" (loadData)="onLoad($event)">
         <app-card
             class="card"
             [product]="productsFromNgIf[0]"

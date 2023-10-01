@@ -1,29 +1,48 @@
-import {Directive, ElementRef, Output, EventEmitter, HostListener} from '@angular/core';
+import {Directive, ElementRef, Output, EventEmitter, HostListener, OnInit} from '@angular/core';
 import {LoadDirection} from './infinit-scroll';
 
 @Directive({
     selector: '[appInfinitScroll]',
 })
-export class InfinitScrollDirective {
-    @Output() onLoad = new EventEmitter<LoadDirection>();
+export class InfinitScrollDirective implements OnInit {
+    @Output() loadData = new EventEmitter<LoadDirection>();
+    private readonly borderOffset = 100;
+    private currentTop: number | null = null;
+    private currentBottom: number | null = null;
 
-    constructor() {}
+    constructor(private readonly elementRef: ElementRef) {}
 
-    @HostListener('scroll', ['$event'])
-    onScroll(event: Event) {
-        const scrollTop = (event.target as HTMLElement).scrollTop;
-        const scrollHeight = (event.target as HTMLElement).scrollHeight;
-        const loadDirection = this.getLoadDirection(scrollTop, scrollHeight);
+    @HostListener('scroll', ['$event.target'])
+    onScroll({scrollHeight, scrollTop, clientHeight}: HTMLElement) {
+        const loadDirection = this.getLoadDirection(scrollTop);
 
-        this.onLoad.emit(loadDirection);
+        if (loadDirection) {
+            this.loadData.emit(loadDirection);
+        }
+
+        this.currentTop = scrollTop;
+        this.currentBottom = scrollHeight - clientHeight;
     }
-    private getLoadDirection(scrollTop: number, scrollHeight: number): LoadDirection {
-        if (scrollTop < 100) {
-            return LoadDirection['Previous'];
+
+    ngOnInit(): void {
+        this.setInitialValues();
+    }
+
+    private setInitialValues(): void {
+        this.currentTop = 0;
+        this.currentBottom =
+            this.elementRef.nativeElement.scrollHeight - this.elementRef.nativeElement.clientHeight;
+    }
+
+    private getLoadDirection(scrollTop: number): LoadDirection | null {
+        if (scrollTop < this.currentTop! && scrollTop < this.borderOffset) {
+            return LoadDirection.Previous;
         }
-        if (scrollTop > scrollHeight - 100) {
-            return LoadDirection['Next'];
+
+        if (scrollTop > this.currentTop! && scrollTop > this.currentBottom! - this.borderOffset) {
+            return LoadDirection.Next;
         }
-        return LoadDirection['None'];
+
+        return null;
     }
 }

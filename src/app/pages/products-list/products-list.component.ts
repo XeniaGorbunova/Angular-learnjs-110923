@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {productsMock} from '../../shared/products/products.mock';
 import {IProduct} from '../../shared/products/product.interface';
-import {LoadDirection} from '../../shared/scroll-with-loading/load-direction.const';
 
 @Component({
     selector: 'app-products-list',
@@ -9,31 +8,16 @@ import {LoadDirection} from '../../shared/scroll-with-loading/load-direction.con
     styleUrls: ['./products-list.component.css'],
 })
 export class ProductsListComponent implements OnInit {
-    productsStore: IProduct[] | null = null;
-
-    get products(): IProduct[] | null {
-        // eslint-disable-next-line no-console
-        // console.log('Calculated');
-
-        return this.productsStore;
-    }
+    products: IProduct[] | null = null;
 
     ngOnInit(): void {
         setTimeout(() => {
-            this.productsStore = productsMock;
+            this.products = productsMock;
         }, 3000);
-        // setTimeout(() => {
-        //     this.products = null;
-        // }, 5000);
     }
 
     onProductBuy(id: IProduct['_id']) {
         // eslint-disable-next-line no-console
         console.log(id);
-    }
-
-    onLoad(direction: LoadDirection) {
-        // eslint-disable-next-line no-console
-        console.log(`load ${direction}`);
     }
 }

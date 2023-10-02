@@ -3,7 +3,6 @@
     (menuClick)="sidenav.toggleSidenavOpened()"
 ></app-header>
 <app-sidenav #sidenav>
-    <!-- <ng-template #navigationTemplate> -->
     <ng-container ngProjectAs="drawer-content">
         <h2>{{ applicationConfig.title }}</h2>
         <mat-list role="list">
@@ -12,8 +11,6 @@
             <mat-list-item appInsertShadow role="listitem">Item 3</mat-list-item>
         </mat-list>
     </ng-container>
-    <!-- </ng-template> -->
-    <!-- <h2>Hello</h2> -->
     <app-products-list></app-products-list>
 </app-sidenav>
 

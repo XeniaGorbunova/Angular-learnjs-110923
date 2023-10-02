@@ -74,7 +74,6 @@ export class CarouselDirective<T> implements OnChanges, OnInit, OnDestroy {
             back: () => {
                 this.back();
             },
-            // back: this.back.bind(this),
         };
     }
 

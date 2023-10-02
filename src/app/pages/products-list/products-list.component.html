@@ -1,10 +1,5 @@
-<!-- <ng-template #template [appDumpNgIf]="products" let-default let-surName="dumpNgIf">
-    {{default}}
-    <h3>{{surName}}</h3>
-</ng-template> -->
 <ng-template let-productsFromNgIf="ngIf" [ngIf]="products" [ngIfElse]="loaderTemplate">
-    <!-- Раскомментировать div при выполнении ДЗ -->
-    <div appScrollWithLoading class="scroll-container" (loadData)="onLoad($event)">
+    <div class="scroll-container">
         <app-card
             class="card"
             [product]="productsFromNgIf[0]"

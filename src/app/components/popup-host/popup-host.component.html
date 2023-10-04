@@ -1,3 +1,4 @@
 <div class="content-wrapper">
-    <ng-template [ngTemplateOutlet]="template"></ng-template>
+    <!-- <ng-template [ngTemplateOutlet]="template"></ng-template> -->
+    <ng-container *ngTemplateOutlet="template; context: {}"></ng-container>
 </div>

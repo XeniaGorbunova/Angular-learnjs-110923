@@ -1,15 +1,34 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    DoCheck,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+} from '@angular/core';
 import {IProduct} from '../../../shared/products/product.interface';
 
 @Component({
     selector: 'app-card',
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent {
+export class CardComponent implements OnInit, DoCheck {
     @Input() product: IProduct | undefined;
 
     @Output() readonly buy = new EventEmitter<IProduct['_id']>();
+
+    ngOnInit(): void {
+        // eslint-disable-next-line no-console
+        console.log('CardComponent Created');
+    }
+
+    ngDoCheck(): void {
+        // eslint-disable-next-line no-console
+        console.log('CardComponent CD');
+    }
 
     onProductBuy(event: Event) {
         event.stopPropagation();

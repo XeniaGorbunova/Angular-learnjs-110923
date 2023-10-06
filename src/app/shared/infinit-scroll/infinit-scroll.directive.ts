@@ -1,45 +1,41 @@
-import {Directive, ElementRef, Output, EventEmitter, HostListener, OnInit} from '@angular/core';
+import {Directive, Output, EventEmitter, HostListener} from '@angular/core';
 import {LoadDirection} from './infinit-scroll';
 
 @Directive({
     selector: '[appInfinitScroll]',
 })
-export class InfinitScrollDirective implements OnInit {
+export class InfinitScrollDirective {
     @Output() loadData = new EventEmitter<LoadDirection>();
     private readonly borderOffset = 100;
-    private currentTop: number | null = null;
-    private currentBottom: number | null = null;
-
-    constructor(private readonly elementRef: ElementRef) {}
+    private currentTop = 0;
 
     @HostListener('scroll', ['$event.target'])
     onScroll({scrollHeight, scrollTop, clientHeight}: HTMLElement) {
-        const loadDirection = this.getLoadDirection(scrollTop);
+        const loadDirection = this.getLoadDirection(scrollTop, scrollHeight, clientHeight);
 
         if (loadDirection) {
             this.loadData.emit(loadDirection);
         }
 
         this.currentTop = scrollTop;
-        this.currentBottom = scrollHeight - clientHeight;
     }
 
-    ngOnInit(): void {
-        this.setInitialValues();
-    }
+    private getLoadDirection(
+        scrollTop: number,
+        scrollHeight: number,
+        clientHeight: number,
+    ): LoadDirection | null {
+        const currentBottom = scrollHeight - clientHeight;
+        const isScrollToTop = scrollTop < this.currentTop;
+        const isIntersectedTopOffset = scrollTop < this.borderOffset;
 
-    private setInitialValues(): void {
-        this.currentTop = 0;
-        this.currentBottom =
-            this.elementRef.nativeElement.scrollHeight - this.elementRef.nativeElement.clientHeight;
-    }
-
-    private getLoadDirection(scrollTop: number): LoadDirection | null {
-        if (scrollTop < this.currentTop! && scrollTop < this.borderOffset) {
+        if (isScrollToTop && isIntersectedTopOffset) {
             return LoadDirection.Previous;
         }
 
-        if (scrollTop > this.currentTop! && scrollTop > this.currentBottom! - this.borderOffset) {
+        const isIntersectedBottomOffset = scrollTop > currentBottom - this.borderOffset;
+
+        if (!isScrollToTop && isIntersectedBottomOffset) {
             return LoadDirection.Next;
         }
 

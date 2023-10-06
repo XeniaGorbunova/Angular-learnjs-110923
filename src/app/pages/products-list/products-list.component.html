@@ -10,7 +10,7 @@
     > -->
 
     <!-- Раскомментрировать для ДЗ -->
-    <!-- <ng-container
+    <ng-container
         *appPagination="
             let productsGroup of products;
             chankSize: 4;
@@ -20,19 +20,22 @@
             let back = back;
             let selectIndex = selectIndex
         "
-    > -->
-    <div class="cards">
-        <app-card
-            *ngFor="let product of productsFromNgIf; trackBy: trackById"
-            class="card"
-            [product]="product"
-            (buy)="onProductBuy($event)"
-        ></app-card>
-    </div>
-    <div class="pagination">
-        <!-- Add pagination control -->
-    </div>
-    <!-- </ng-container> -->
+    >
+        <div class="cards">
+            <app-card
+                *ngFor="let product of productsFromNgIf; trackBy: trackById"
+                class="card"
+                [product]="product"
+                (buy)="onProductBuy($event)"
+            ></app-card>
+        </div>
+        <div class="pagination">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+            <i *ngFor="let i of products.length % chankSize" class="fa-solid fa-circle"></i>
+            <i class="fa-regular fa-circle"></i>
+            <i class="fa-solid fa-arrow-right fa-xl"></i>
+        </div>
+    </ng-container>
 
     <!-- <app-card
             class="card"

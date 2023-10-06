@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     DoCheck,
     EventEmitter,
@@ -8,6 +9,7 @@ import {
     Output,
 } from '@angular/core';
 import {IProduct} from '../../../shared/products/product.interface';
+import {getCurrency} from '../../../shared/currency/currency';
 
 @Component({
     selector: 'app-card',
@@ -19,6 +21,14 @@ export class CardComponent implements OnInit, DoCheck {
     @Input() product: IProduct | undefined;
 
     @Output() readonly buy = new EventEmitter<IProduct['_id']>();
+
+    readonly getCurrency = getCurrency;
+
+    constructor(private readonly changeDetectorRef: ChangeDetectorRef) {
+        setInterval(() => {
+            this.changeDetectorRef.detectChanges();
+        }, 1000);
+    }
 
     ngOnInit(): void {
         // eslint-disable-next-line no-console

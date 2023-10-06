@@ -1,4 +1,5 @@
-<div *ngIf="products as productsFromNgIf; else loaderTemplate" class="scroll-container">
+<!-- <div *appDumpNgIf="products as productsFromNgIf" class="scroll-container"> -->
+<div *ngIf="products$ | async as products; else loaderTemplate" class="scroll-container">
     <ng-container
         *appPagination="
             let productsGroup of products;

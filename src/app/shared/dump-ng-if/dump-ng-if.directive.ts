@@ -5,7 +5,7 @@ import {IDumpNgIfContext} from './dump-ng-if-context.interface';
     selector: '[appDumpNgIf]',
 })
 export class DumpNgIfDirective<T> {
-    @Input() set appDumpNgIf(data: T) {
+    @Input() set appDumpNgIf(data: T | null | undefined) {
         const isContainerHasView = this.viewContainerRef.length;
         const needClear = !data && isContainerHasView;
 
@@ -20,7 +20,7 @@ export class DumpNgIfDirective<T> {
         if (needCreateView) {
             this.viewContainerRef.createEmbeddedView(this.templateRef, {
                 $implicit: data,
-                dumpNgIf: data,
+                appDumpNgIf: data,
             });
             // this.viewContainerRef.createEmbeddedView(this.templateRef, {
             //     $implicit: 'Maks',
@@ -39,4 +39,19 @@ export class DumpNgIfDirective<T> {
         private readonly viewContainerRef: ViewContainerRef,
         private readonly templateRef: TemplateRef<IDumpNgIfContext<T>>,
     ) {}
+
+    static ngTemplateContextGuard<T>(
+        _directive: DumpNgIfDirective<T>,
+        _context: unknown,
+    ): _context is IDumpNgIfContext<T> {
+        return true;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    static ngTemplateGuard_appDumpNgIf<T>(
+        _directive: DumpNgIfDirective<T>,
+        _inputValue: T | null | undefined,
+    ): _inputValue is T {
+        return true;
+    }
 }

@@ -13,6 +13,13 @@ export class ProductsListComponent {
     // products: IProduct[] | null = null;
     products$: Observable<IProduct[]> = of(productsMock);
 
+    // for easy
+    name = 'Мышь';
+
+    // for hard
+    readonly propertyName = 'feedbacksCount' as const; // keyof IProduct
+    searchPropertyValue = 2;
+
     constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
 
     // ngOnInit(): void {

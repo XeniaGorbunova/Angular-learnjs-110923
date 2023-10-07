@@ -1,5 +1,5 @@
 <!-- <ng-template let-productsFromNgIf="ngIf" [ngIf]="products" [ngIfElse]="loaderTemplate"> -->
-<div *ngIf="products as productsFromNgIf; else loaderTemplate" class="scroll-container">
+<div *ngIf="products as products; else loaderTemplate" class="scroll-container">
     <!-- <div
         *ngIf="products; else: loaderTemplate; ngIf as productsFromNgIf"
         class="scroll-container"
@@ -13,9 +13,9 @@
     <ng-container
         *appPagination="
             let productsGroup of products;
-            chankSize: 4;
+            chunkSize: 4;
             let pageIndexes = pageIndexes;
-            let activeIndex = index;
+            let activeIndex = activeIndex;
             let next = next;
             let back = back;
             let selectIndex = selectIndex
@@ -23,17 +23,21 @@
     >
         <div class="cards">
             <app-card
-                *ngFor="let product of productsFromNgIf; trackBy: trackById"
+                *ngFor="let product of productsGroup; trackBy: trackById"
                 class="card"
                 [product]="product"
                 (buy)="onProductBuy($event)"
             ></app-card>
         </div>
         <div class="pagination">
-            <i class="fa-solid fa-arrow-left fa-xl"></i>
-            <i *ngFor="let i of products.length % chankSize" class="fa-solid fa-circle"></i>
-            <i class="fa-regular fa-circle"></i>
-            <i class="fa-solid fa-arrow-right fa-xl"></i>
+            <i class="fa-solid fa-arrow-left fa-xl" (click)="back()"></i>
+            <i
+                *ngFor="let i of pageIndexes"
+                class="fa-solid fa-circle"
+                [ngClass]="{'fa-solid': activeIndex === i, 'fa-regular': activeIndex !== i}"
+                (click)="selectIndex(i)"
+            ></i>
+            <i class="fa-solid fa-arrow-right fa-xl" (click)="next()"></i>
         </div>
     </ng-container>
 

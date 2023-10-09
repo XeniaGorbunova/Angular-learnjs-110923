@@ -33,8 +33,8 @@
             <i class="fa-solid fa-arrow-left fa-xl" (click)="back()"></i>
             <i
                 *ngFor="let i of pageIndexes"
-                class="fa-solid fa-circle"
-                [ngClass]="{'fa-solid': activeIndex === i, 'fa-regular': activeIndex !== i}"
+                class="fa-regular fa-circle"
+                [class.fa-solid]="activeIndex === i"
                 (click)="selectIndex(i)"
             ></i>
             <i class="fa-solid fa-arrow-right fa-xl" (click)="next()"></i>

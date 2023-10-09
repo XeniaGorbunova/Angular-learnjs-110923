@@ -1,6 +1,7 @@
 import {Directive, Input, SimpleChanges, TemplateRef, ViewContainerRef} from '@angular/core';
-import {IPaginationContext} from './pagination-context.interface';
 import {BehaviorSubject, map, Subject, takeUntil} from 'rxjs';
+import {IPaginationContext} from './pagination-context.interface';
+import {getArrowWithChunks} from '../helpers/get-arrow-with-chunks';
 
 @Directive({
     selector: '[appPagination]',
@@ -9,6 +10,7 @@ export class PaginationDirective<T> {
     @Input() appPaginationOf: T[] | undefined | null;
     @Input() appPaginationChunkSize = 4;
     private productsWithChunks: T[][] = [];
+    private pageIndexes: number[] = [];
 
     private readonly activeIndex$ = new BehaviorSubject<number>(0);
     private readonly destroy$ = new Subject<void>();
@@ -40,20 +42,12 @@ export class PaginationDirective<T> {
             return;
         }
 
-        this.productsWithChunks = this.getProductsWithChunks(
+        this.productsWithChunks = getArrowWithChunks(
             this.appPaginationOf,
             this.appPaginationChunkSize,
         );
+        this.pageIndexes = this.getPageIndexes();
         this.activeIndex$.next(0);
-    }
-
-    private getProductsWithChunks(products: T[], chunkSize: number) {
-        const result = [];
-        for (let i = 0; i < products.length; i += chunkSize) {
-            const chunk = products.slice(i, i + chunkSize);
-            result.push(chunk);
-        }
-        return result;
     }
 
     private listenActiveIndexChange() {
@@ -73,8 +67,8 @@ export class PaginationDirective<T> {
             $implicit: this.productsWithChunks[activeIndex],
             appPaginationOf: this.appPaginationOf as T[],
             appPaginationChunkSize: this.appPaginationChunkSize,
-            activeIndex: activeIndex,
-            pageIndexes: this.getPageIndexes(),
+            activeIndex,
+            pageIndexes: this.pageIndexes,
             selectIndex: (index: number) => {
                 this.activeIndex$.next(index);
             },

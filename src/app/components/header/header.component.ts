@@ -1,4 +1,11 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    TemplateRef,
+} from '@angular/core';
 import {IApplicationConfig} from '../../shared/application-config/application-config.interface';
 
 @Component({
@@ -11,4 +18,12 @@ export class HeaderComponent {
     @Input() applicationConfig: IApplicationConfig | null = null;
 
     @Output() readonly menuClick = new EventEmitter<void>();
+
+    openPopup(_template: TemplateRef<{$implicit: string}>) {
+        // this.popupService.openPopup(template, context);
+    }
+
+    closePopup() {
+        // this.popupService.closePopup();
+    }
 }

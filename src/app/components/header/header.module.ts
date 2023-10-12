@@ -8,12 +8,6 @@ import {HeaderComponent} from './header.component';
 @NgModule({
     declarations: [HeaderComponent],
     imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule],
-    // providers: [
-    //     {
-    //         provide: 'name',
-    //         useValue: NAME_TOKEN,
-    //     },
-    // ],
     exports: [HeaderComponent],
 })
 export class HeaderModule {}

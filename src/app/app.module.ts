@@ -11,6 +11,8 @@ import {ProductsListModule} from './pages/products-list/products-list.module';
 import {SidenavModule} from './components/sidenav/sidenav.module';
 import {PopupHostModule} from './components/popup-host/popup-host.module';
 import {InsertShadowModule} from './shared/insert-shadow/insert-shadow.module';
+import {ProductModule} from './pages/product/product.module';
+import {NotFoundModule} from './pages/not-found/not-found.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,6 +23,8 @@ import {InsertShadowModule} from './shared/insert-shadow/insert-shadow.module';
         BrowserAnimationsModule,
         HeaderModule,
         ProductsListModule,
+        ProductModule,
+        NotFoundModule,
         SidenavModule,
         MatListModule,
         PopupHostModule,

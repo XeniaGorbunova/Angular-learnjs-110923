@@ -18,8 +18,8 @@ export class ProductsStoreService {
 
     constructor(private readonly productsApiService: ProductsApiService) {}
 
-    loadProducts() {
-        this.productsApiService.getProducts$().subscribe(products => {
+    loadProducts(subcategoryId?: string | null) {
+        this.productsApiService.getProducts$(subcategoryId).subscribe(products => {
             this.productsStore$.next(products);
         });
     }

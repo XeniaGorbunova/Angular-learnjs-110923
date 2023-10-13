@@ -5,7 +5,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 @Injectable({
     providedIn: 'root',
 })
-export class PopupHost {
+export class PopupService {
     public readonly popupTemplateRefStore$ =
         new BehaviorSubject<TemplateRef<PopupHostContextInterface> | null>(null);
     public readonly contextStore$ = new BehaviorSubject<PopupHostContextInterface | null>(null);

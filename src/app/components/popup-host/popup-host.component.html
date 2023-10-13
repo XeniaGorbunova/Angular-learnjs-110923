@@ -4,5 +4,7 @@
             <mat-icon>close</mat-icon>
         </button>
     </div>
-    <ng-container *ngTemplateOutlet="template$ | async; context: { $implicit: (context$ | async)?.$implicit }"></ng-container>
+    <ng-container
+        *ngTemplateOutlet="template$ | async; context: {$implicit: (context$ | async)?.$implicit}"
+    ></ng-container>
 </div>

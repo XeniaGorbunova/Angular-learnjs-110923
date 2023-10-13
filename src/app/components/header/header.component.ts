@@ -7,8 +7,8 @@ import {
     TemplateRef,
 } from '@angular/core';
 import {IApplicationConfig} from '../../shared/application-config/application-config.interface';
-import {PopupHostService} from '../popup-host/popup-host.service';
-import {PopupHostContext} from '../popup-host/popup-host-context';
+import {PopupHost} from '../popup-host/popup-host';
+import {PopupHostContextInterface} from '../popup-host/popup-host-context.interface';
 
 @Component({
     selector: 'app-header',
@@ -21,9 +21,12 @@ export class HeaderComponent {
 
     @Output() readonly menuClick = new EventEmitter<void>();
 
-    constructor(private readonly popupHostService: PopupHostService) {}
+    constructor(private readonly popupHostService: PopupHost) {}
 
-    openPopup(template: TemplateRef<PopupHostContext>, context: PopupHostContext) {
+    openPopup(
+        template: TemplateRef<PopupHostContextInterface>,
+        context: PopupHostContextInterface,
+    ) {
         this.popupHostService.openPopup(template, context);
     }
 

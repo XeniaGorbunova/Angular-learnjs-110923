@@ -1,14 +1,5 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    HostBinding,
-    Input,
-    TemplateRef,
-} from '@angular/core';
-import {PopupHostService} from './popup-host.service';
-import {PopupHostContext} from './popup-host-context';
-import {map, tap} from 'rxjs';
+import {ChangeDetectionStrategy, Component, HostBinding} from '@angular/core';
+import {PopupHost} from './popup-host';
 
 @Component({
     selector: 'app-popup-host',
@@ -22,21 +13,12 @@ export class PopupHostComponent {
 
     @HostBinding('class.empty')
     get isTemplateNullable(): boolean {
-        return !this.template$
-            .pipe(
-                map((template: TemplateRef<PopupHostContext> | null) => !template),
-                tap(() => this.cdr.markForCheck()),
-            )
-            .subscribe();
+        return this.popupHostService.isNoTemplateRef;
     }
 
-    constructor(
-        private readonly popupHostService: PopupHostService,
-        private readonly cdr: ChangeDetectorRef,
-    ) {}
+    constructor(private readonly popupHostService: PopupHost) {}
 
     public closePopup() {
         this.popupHostService.closePopup();
-        this.cdr.markForCheck();
     }
 }

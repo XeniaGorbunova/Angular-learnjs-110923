@@ -16,6 +16,10 @@ const routes: Routes = [
         path: 'products-list', // ['products-list']
         component: ProductsListComponent,
     },
+    {
+        path: 'products-list/:subCategoryId',
+        component: ProductsListComponent,
+    },
     // { old config
     //     path: ':id/root',
     //     redirectTo: 'root/:id',

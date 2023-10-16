@@ -13,23 +13,15 @@ const routes: Routes = [
         redirectTo: '/products-list',
     },
     {
-        path: 'products-list', // ['products-list']
+        path: 'products-list',
         component: ProductsListComponent,
     },
     {
         path: 'products-list/:subCategoryId',
         component: ProductsListComponent,
     },
-    // { old config
-    //     path: ':id/root',
-    //     redirectTo: 'root/:id',
-    // },
-    // { new config
-    //     path: 'root/:id',
-    //     component: ...,
-    // },
     {
-        path: 'product/:id', // ['product', 'id']
+        path: 'product/:id',
         component: ProductComponent,
         children: [
             {
@@ -38,11 +30,11 @@ const routes: Routes = [
                 redirectTo: 'description',
             },
             {
-                path: 'description', // ['description']
+                path: 'description',
                 component: DescriptionComponent,
             },
             {
-                path: 'type', // ['type']
+                path: 'type',
                 component: TypeComponent,
             },
         ],

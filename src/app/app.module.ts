@@ -35,25 +35,26 @@ import {NotFoundModule} from './pages/not-found/not-found.module';
 })
 export class AppModule {}
 
-// NullInjector
+//                                      NullInjector
 
-// |
+//                                          |
 
-// PlatformInjector
+//                                    PlatformInjector
 
-// |
+//                                          |
 
-// RootInjector(AppModuleInjector)
+//                              RootInjector(AppModuleInjector)
 
-// |
-// --------------------------------------------------------------------
+//                                          |
 
-// AppElementIjector
+// -------------------------------------------------------------------------------------------
 
-// |                            \
+//                                     AppElementIjector
+//                                                        \_________
+//                                           |                      \
 
-// SidenavElementInjector           HeaderElementInjector
+//                                  SidenavElementInjector           HeaderElementInjector
 
-// |
+//                                           |
 
-// ProductsListElementInjector
+//                                ProductsListElementInjector

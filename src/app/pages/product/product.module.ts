@@ -9,6 +9,7 @@ import {CarouselModule} from '../../shared/carousel/carousel.module';
 import {ProductComponent} from './product.component';
 import {DescriptionComponent} from './description/description.component';
 import {TypeComponent} from './type/type.component';
+import {ProductRoutingModule} from './product-routing.module';
 
 @NgModule({
     declarations: [ProductComponent, DescriptionComponent, TypeComponent],
@@ -20,6 +21,7 @@ import {TypeComponent} from './type/type.component';
         MatProgressSpinnerModule,
         MatTabsModule,
         RouterModule,
+        ProductRoutingModule,
     ],
     exports: [ProductComponent],
 })

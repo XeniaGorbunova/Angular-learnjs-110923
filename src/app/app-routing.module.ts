@@ -1,10 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ProductsListComponent} from './pages/products-list/products-list.component';
-import {ProductComponent} from './pages/product/product.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
-import {DescriptionComponent} from './pages/product/description/description.component';
-import {TypeComponent} from './pages/product/type/type.component';
 
 const routes: Routes = [
     {
@@ -14,30 +10,29 @@ const routes: Routes = [
     },
     {
         path: 'products-list',
-        component: ProductsListComponent,
+        // children: productsListRoutes,
+        loadChildren: () =>
+            import('./pages/products-list/products-list.module').then(m => m.ProductsListModule),
+        // canActivate: [
+        //     (_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) =>
+        //         question('Можно ли перейти по пути?'),
+        // ],
+        // canActivate: [
+        //     (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) =>
+        //         inject(QuestionCanActivateGuard).canActivate(route, state),
+        // ],
+        // canLoad: [QuestionCanLoadGuard],
+        // canMatch: [QuestionCanMatchGuard],
     },
-    {
-        path: 'products-list/:subCategoryId',
-        component: ProductsListComponent,
-    },
+    // {
+    //     path: 'products-list',
+    //     // children: productsListRoutes,
+    // },
     {
         path: 'product/:id',
-        component: ProductComponent,
-        children: [
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: 'description',
-            },
-            {
-                path: 'description',
-                component: DescriptionComponent,
-            },
-            {
-                path: 'type',
-                component: TypeComponent,
-            },
-        ],
+        // children: productRoutes,
+        loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule),
+        // canLoad: [QuestionCanLoadGuard],
     },
     {
         path: '**',
@@ -50,17 +45,3 @@ const routes: Routes = [
     exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-// search indexes: 0 -> 1 -> 2 -> ...
-
-// current url segments: ['product', 'id', '']
-
-//                                                         undefined
-//        __
-//      /                                /                     |                     \
-
-//  ['']                ['products-list']               ['product', 'id']             ['**']
-//                                  ________________/
-//                                 /                     /               \
-
-//                            ['']        ['description']                ['type']

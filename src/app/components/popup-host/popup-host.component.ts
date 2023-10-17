@@ -9,7 +9,6 @@ import {PopupService} from './popup.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupHostComponent {
-    private isEmpty = true;
     readonly template$ = this.popupService.popupTemplateRef$.pipe(
         tap(popupTemplateRef => {
             this.isEmpty = !popupTemplateRef;
@@ -19,9 +18,7 @@ export class PopupHostComponent {
     readonly context$ = this.popupService.context$;
 
     @HostBinding('class.empty')
-    get isTemplateNullable(): boolean {
-        return this.isEmpty;
-    }
+    isEmpty = true;
 
     constructor(private readonly popupService: PopupService) {}
 

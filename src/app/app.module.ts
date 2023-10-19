@@ -34,62 +34,7 @@ import {BaseUrlInterceptor} from './shared/base-url/base-url.interceptor';
             useClass: BaseUrlInterceptor,
             multi: true,
         },
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: ErrorInterceptor,
-        //     multi: true,
-        // },
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: MapInterceptor,
-        //     multi: true,
-        // },
-        // {
-        //     provide: NAME_TOKEN,
-        //     useValue: 'AppModule',
-        // },
     ],
-    /**
-     * request - base request
-     *
-     * BaseUrlInterceptor.intercept(request, handler) -> ErrorInterceptor.intercept(baseRequest) -> MapInterceptor.intercept(errorRequest) -> mapRequest
-     *
-     * (BaseUrlInterceptor) handle(patchedRequest) === ErrorInterceptor.intercept(patchedRequest)
-     */
     bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-//                                      NullInjector
-
-//                                          |
-
-//                                    PlatformInjector
-
-//                                          |
-
-//                              RootInjector(AppModuleInjector)
-
-// -------------------------------------------------------------------------------------------
-
-//                          /                               \
-
-//             ProductsListModuleInjector          ProductModuleInjector
-
-// -------------------------------------------------------------------------------------------
-
-//                                           |
-
-//                                     AppElementIjector
-//                                                        \_________
-//                                           |                      \
-
-//                                  SidenavElementInjector           HeaderElementInjector
-
-//                              /                             \
-
-//           ProductsListElementInjector              ProductElementInjector
-
-//                      |
-
-//             CardElementInjectore

@@ -3,15 +3,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {ProductComponent} from './product.component';
 import {DescriptionComponent} from './description/description.component';
 import {TypeComponent} from './type/type.component';
-// import {QuestionCanLoadGuard} from '../../shared/test-guards/question-can-load.guard';
 
 export const productRoutes: Routes = [
     {
         path: '',
         component: ProductComponent,
-        // canActivate: [QuestionCanActivateGuard],
-        // canActivateChild: [QuestionCanActivateChildGuard],
-        // canDeactivate: [QuestionCanDiactivateGuard],
         children: [
             {
                 path: '',

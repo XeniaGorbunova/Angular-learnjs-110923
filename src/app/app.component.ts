@@ -9,8 +9,4 @@ import {applicationConfigMock} from './shared/application-config/application-con
 })
 export class AppComponent {
     readonly applicationConfig = applicationConfigMock;
-
-    // constructor(@Inject(NAME_TOKEN) name: string) {
-    //     console.log('AppComponent', name);
-    // }
 }

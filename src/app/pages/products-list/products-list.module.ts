@@ -27,12 +27,6 @@ import {ProductsListRoutingModule} from './products-list-routing.module';
         RouterModule,
         ProductsListRoutingModule,
     ],
-    // providers: [
-    //     {
-    //         provide: NAME_TOKEN,
-    //         useValue: 'ProductsListModule',
-    //     },
-    // ],
     exports: [ProductsListComponent],
 })
 export class ProductsListModule {}

@@ -2,6 +2,7 @@ import {Directive, HostBinding, HostListener} from '@angular/core';
 
 @Directive({
     selector: '[appInsertShadow]',
+    exportAs: 'appInsertShadow',
 })
 export class InsertShadowDirective {
     // constructor(private readonly elementRef: ElementRef<HTMLElement>) {

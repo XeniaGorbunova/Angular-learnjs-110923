@@ -35,7 +35,7 @@ export class CounterInputComponent implements ControlValueAccessor {
         this.counter = newCounter;
 
         // eslint-disable-next-line no-console
-        console.log('writeValue', newCounter);
+        // console.log('writeValue', newCounter);
 
         this.changeDetectorRef.markForCheck();
     }
@@ -44,14 +44,14 @@ export class CounterInputComponent implements ControlValueAccessor {
         this.onChange = cb;
 
         // eslint-disable-next-line no-console
-        console.log('registerOnChange', cb);
+        // console.log('registerOnChange', cb);
     }
 
     registerOnTouched(cb: () => void) {
         this.onTouched = cb;
 
         // eslint-disable-next-line no-console
-        console.log('onTouched', cb);
+        // console.log('onTouched', cb);
     }
 
     setDisabledState(isDisabled: boolean) {
@@ -64,7 +64,7 @@ export class CounterInputComponent implements ControlValueAccessor {
         this.counter -= this.step;
 
         // eslint-disable-next-line no-console
-        console.log('back', this.counter);
+        // console.log('back', this.counter);
 
         this.onChange(this.counter);
         this.onTouched();
@@ -74,7 +74,7 @@ export class CounterInputComponent implements ControlValueAccessor {
         this.counter += this.step;
 
         // eslint-disable-next-line no-console
-        console.log('next', this.counter);
+        // console.log('next', this.counter);
 
         this.onChange(this.counter);
         this.onTouched();

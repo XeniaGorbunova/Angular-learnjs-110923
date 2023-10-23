@@ -1,62 +1,9 @@
-<!-- <app-counter-input [formControl]="counterForm"></app-counter-input> -->
-
-<!-- {{counterForm.value}}
-{{counterFormValue$ | async}} -->
-<!-- {{counterForm.valid}}
-{{counterForm.touched}}
-{{counterForm.dirty}} -->
-
-<!-- <app-counter-input [ngModel]="counter" (ngModelChange)="counter = $event"></app-counter-input> -->
-<!-- <app-counter-input #ngModel="ngModel" [(ngModel)]="counter"></app-counter-input> -->
-
-<!-- {{counter}} -->
-<!-- {{ngModel.dirty}}
-{{ngModel.touched}}
-{{ngModel.valid}} -->
-<!-- {{ngModel.value}} -->
-
-<!-- <mat-form-field appearance="fill" class="search-input">
-    <mat-label>Search</mat-label>
-    <input matInput [formControl]="searchForm" />
-</mat-form-field>
-
-{{searchForm.valid}} -->
-<!-- {{searchForm.errors | json}} -->
-<!-- {{searchFormErrors$ | async | json}} -->
-
-<mat-form-field appearance="fill" class="search-input">
-    <mat-label>Search</mat-label>
-    <input
-        #ngModel="ngModel"
-        matInput
-        appIsStringAsyncValidator
-        required
-        [minlength]="3"
-        [ngModelOptions]="{
-            updateOn: 'submit'
-        }"
-        [(ngModel)]="searchName"
-    />
-</mat-form-field>
-
-{{ ngModel.valid }}
-{{ ngModel.errors | json }}
+<app-filter [brands]="brands$ | async"></app-filter>
 
 <div *ngIf="products$ | async as products; else loaderTemplate" class="scroll-container">
-    <!-- <ng-container
-        *appPagination="
-            let productsGroup of products | filterByProperty : 'name' : ((searchFormValue$ | async) || '');
-            chankSize: 4;
-            let pageIndexes = pageIndexes;
-            let activeIndex = index;
-            let next = next;
-            let back = back;
-            let selectIndex = selectIndex
-        "
-    > -->
     <ng-container
         *appPagination="
-            let productsGroup of products | filterByProperty : 'name' : searchName;
+            let productsGroup of products | filterByProperty : 'name' : '';
             chankSize: 4;
             let pageIndexes = pageIndexes;
             let activeIndex = index;

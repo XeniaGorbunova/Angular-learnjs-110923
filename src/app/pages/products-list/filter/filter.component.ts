@@ -9,7 +9,8 @@ import {
     SimpleChanges,
 } from '@angular/core';
 import {FormArray, FormBuilder, FormControl} from '@angular/forms';
-import {Observable, map} from 'rxjs';
+import {Observable, map, tap, delay, take} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
 import {IProductsFilterForm} from './products-filter-form.interface';
 import {IProductsFilter} from './products-filter.interface';
 
@@ -23,6 +24,7 @@ export class FilterComponent implements OnChanges, OnInit {
     @Input() brands: string[] | null = null;
 
     @Output() changeFilter = new EventEmitter<IProductsFilter>();
+    @Output() setFilterName = new EventEmitter<string>();
 
     readonly filterForm = this.formBuilder.group({
         name: '',
@@ -33,16 +35,50 @@ export class FilterComponent implements OnChanges, OnInit {
         brands: this.formBuilder.array<FormControl<boolean>>([]),
     });
 
-    constructor(private readonly formBuilder: FormBuilder) {}
+    constructor(
+        private readonly formBuilder: FormBuilder,
+        private readonly router: Router,
+        private readonly activatedRoute: ActivatedRoute,
+    ) {}
 
     ngOnInit() {
         this.listenFormChange();
+        this.setFormValuesFromUrl();
     }
 
     ngOnChanges({brands}: SimpleChanges) {
         if (brands) {
             this.updateBrandsControl();
         }
+    }
+
+    private setFormValuesFromUrl() {
+        this.activatedRoute.queryParams
+            .pipe(
+                take(1),
+                tap(params => {
+                    if (params.name) {
+                        this.filterForm?.get('name')?.setValue(params.name);
+                    }
+
+                    if (params.minPrice) {
+                        this.filterForm?.get('priceRange')?.get('min')?.setValue(params.minPrice);
+                    }
+
+                    if (params.maxPrice) {
+                        this.filterForm?.get('priceRange')?.get('max')?.setValue(params.maxPrice);
+                    }
+
+                    if (params.brands) {
+                        const brandsFromParams = decodeURIComponent(params.brands).split(';');
+
+                        brandsFromParams.forEach((brand: string) => {
+                            this.filterForm.get('brands')?.get(brand)?.setValue(true);
+                        });
+                    }
+                }),
+            )
+            .subscribe();
     }
 
     private updateBrandsControl() {
@@ -66,9 +102,27 @@ export class FilterComponent implements OnChanges, OnInit {
                         brands: this.getSelectedBrands(brands as boolean[]),
                     }),
                 ),
+                delay(300),
+                tap((filterValue: IProductsFilter) => {
+                    this.setFilterName.emit(filterValue.name);
+                    this.updateQueryParams(filterValue);
+                }),
             )
             // eslint-disable-next-line no-console
             .subscribe(console.log);
+    }
+
+    private updateQueryParams(queryParams: IProductsFilter) {
+        this.router.navigate([], {
+            relativeTo: this.activatedRoute,
+            queryParams: {
+                name: queryParams.name,
+                minPrice: queryParams.priceRange.min,
+                maxPrice: queryParams.priceRange.max,
+                brands: encodeURIComponent(queryParams.brands.join(';')),
+            },
+            queryParamsHandling: 'merge',
+        });
     }
 
     private getSelectedBrands(brandSelection: boolean[]): string[] {

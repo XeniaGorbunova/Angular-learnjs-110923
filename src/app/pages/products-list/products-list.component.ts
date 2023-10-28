@@ -28,6 +28,8 @@ export class ProductsListComponent {
         switchMap(() => this.brandsService.brands$),
     );
 
+    filterName = '';
+
     constructor(
         private readonly productsStoreService: ProductsStoreService,
         private readonly activatedRoute: ActivatedRoute,
@@ -41,5 +43,9 @@ export class ProductsListComponent {
 
     trackById(_index: number, item: IProduct): IProduct['_id'] {
         return item._id;
+    }
+
+    setFilterName(filterName: string) {
+        this.filterName = filterName;
     }
 }
